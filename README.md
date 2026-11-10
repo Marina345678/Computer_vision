@@ -18,39 +18,28 @@
 
 ## Установка и запуск
 
-1.  Клонируйте репозиторий:
-    
-    git clone https://github.com/your-username/anomaly-detection-patchcore.git
-    cd anomaly-detection-patchcore
+Для того чтобы запустить проект (например, в том же Google Colab), нужно сделать следующее:
 
-2. Установите зависимости:
+Скачать репозиторий:
+В новой ячейке Colab выполните:
 
-pip install -r requirements.txt
+!git clone https://github.com/Marina345678/Computer_vision.git
+%cd Computer_vision
+Установить зависимости:
 
-
-3. Подготовьте данные:
-
-Скачайте датасеты MVTec AD и VisA.
-
-Для VisA: укажите пути в data_preparation.py и запустите его.
-
-python data_preparation.py
+!pip install -r requirements.txt
+Подготовить данные:
+Убедитесь, что датасет скачан и лежит на Google Диске. Затем запустите скрипт подготовки (он создаст нужную структуру папок):
 
 
-4. Обучение модели:
+!python data_preparation.py
+Запустить обучение:
+(Не забудьте перед этим открыть файл конфигурации configs/visa_candle_config.sh и указать правильный путь к данным DATA_PATH).
 
-Для MVTec AD (bottle):
-Отредактируйте configs/mvtec_bottle_config.sh, указав путь к данным. Затем запустите:
-
-sh train.sh configs/mvtec_bottle_config.sh --gpu 0
-Для VisA (candle):
-Отредактируйте configs/visa_candle_config.sh, указав путь к данным. Затем запустите:
-
-sh train.sh configs/visa_candle_config.sh --gpu 0
+!sh train.sh configs/visa_candle_config.sh
+Запустить оценку и получить картинки:
 
 
-5. Оценка и визуализация:
-После обучения модель сохраняется в папке results. Укажите путь к ней в evaluate.sh и запустите:
-
-sh evaluate.sh
+!sh evaluate.sh
+Результаты (картинки с дефектами) появятся в папке results_evaluation_vis.
 
